@@ -71,8 +71,45 @@ Edit your `/etc/hosts` file:
 ```
 
 ## Build the project in dev
- - In progress
- 
+
+Within the root folder copy the environment variables
+
+```bash
+cp .env-template .env
+```
+
+Navigate to server
+
+```bash
+cd server
+```
+
+Copy the env variables for developement environment
+
+```bash
+cp .env-template .env
+```
+
+Within the backend path creat a new foldder (if it does not exist)
+
+```bash
+mkdir uploads
+```
+
+Build the project from the root directory
+```bash
+docker-compose up --build
+```
+
+Once the containers are up conenct to pagex_api_dev via docker
+and install the all packages
+
+```bash
+docker exec -ti pagex_api_dev  bash
+# once connected
+npm install
+```
+
 #### Nice to know :
  - ...
 
