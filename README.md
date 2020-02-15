@@ -6,7 +6,6 @@ PAGEX REST API PROJECT
 PageX is a solution to connect talented people in one place 
 and help them share and develop their passion.
 
-
 ## Team 
  - PAGEX-TEAM
 
