@@ -1,4 +1,4 @@
-PAGEX-REST-API PROJECT
+PAGEX REST-API PROJECT
 =========================
 
 ## Description of the project :
