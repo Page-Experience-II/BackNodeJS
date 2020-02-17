@@ -14,16 +14,16 @@ const swaggerDocument = {
     ],
     "produces": ["application/json"],
     "paths": {
-        "/signup": {
+        "/api/v1/validate/account": {
             "post": {
-                "x-swagger-router-controller": "signup",
-                "operationId": "index",
-                "description": 'Signup new user',
+                "x-swagger-router-controller": "users",
+                "operationId": "users",
+                "description": 'Validate user emil',
                 "tags": ["User"],
-                "description": `[Signup link](${process.env.URL_BACKEND + ':' + process.env.URL_BACKEND_PORT + "/signup"})`,
+                "description": `[Account validation link](${process.env.URL_BACKEND + ':' + process.env.URL_BACKEND_PORT + "/api/v1/validation"})`,
                 "parameters": [
                     {
-                        "name": "username",
+                        "name": "fullname",
                         "in": "formData",
                         "type": "string",
                         // "collectionFormat": "multi",
@@ -32,34 +32,34 @@ const swaggerDocument = {
                         //     "type": "string"
                         // },
                     },
-                    {
-                        "name": "lastname",
-                        "in": "formData",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "password",
-                        "in": "formData",
-                        "required": true,
-                        "type": "password"
-                    },
+                    // {
+                    //     "name": "lastname",
+                    //     "in": "formData",
+                    //     "required": true,
+                    //     "type": "string"
+                    // },
+                    // {
+                    //     "name": "password",
+                    //     "in": "formData",
+                    //     "required": true,
+                    //     "type": "password"
+                    // },
                     {
                         "name": "email",
                         "in": "formData",
                         "required": true,
                         "type": "string"
                     },
-                    {
-                        "name": "file",
-                        "in": "formData",
-                        "type": "file",
-                        "required": "true"
-                    }
+                    // {
+                    //     "name": "file",
+                    //     "in": "formData",
+                    //     "type": "file",
+                    //     "required": "true"
+                    // }
                 ],
                 "responses": {
                     '200': {
-                        description: 'Users were obtained'
+                        "description": "Vous êtes inscrit avec succès, veuillez valider votre adresse email",                     
                         // content: {
                         //     'application/json': {
                         //         "schema": {
