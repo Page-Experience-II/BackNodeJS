@@ -13,25 +13,27 @@ const swaggerDocument = {
         }
     ],
     "produces": ["application/json"],
+    "consumes": "application/json",
     "paths": {
         "/api/v1/validate/account": {
             "post": {
                 "x-swagger-router-controller": "users",
                 "operationId": "users",
+                "summary": "Validate the email account",
                 "description": 'Validate user emil',
                 "tags": ["User"],
                 "description": `[Account validation link](${process.env.URL_BACKEND + ':' + process.env.URL_BACKEND_PORT + "/api/v1/validation"})`,
                 "parameters": [
-                    {
-                        "name": "fullname",
-                        "in": "formData",
-                        "type": "string",
-                        // "collectionFormat": "multi",
-                        "required": true
-                        // "items": {
-                        //     "type": "string"
-                        // },
-                    },
+                    // {
+                    //     "name": "fullname",
+                    //     "in": "formData",
+                    //     "type": "string",
+                    //     // "collectionFormat": "multi",
+                    //     "required": true
+                    //     // "items": {
+                    //     //     "type": "string"
+                    //     // },
+                    // },
                     // {
                     //     "name": "lastname",
                     //     "in": "formData",
@@ -44,22 +46,47 @@ const swaggerDocument = {
                     //     "required": true,
                     //     "type": "password"
                     // },
-                    {
-                        "name": "email",
-                        "in": "formData",
-                        "required": true,
-                        "type": "string"
-                    },
+                    // {
+                    //     "name": "email",
+                    //     "in": "formData",
+                    //     "required": true,
+                    //     "type": "string"
+                    // },
                     // {
                     //     "name": "file",
                     //     "in": "formData",
                     //     "type": "file",
                     //     "required": "true"
                     // }
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "fullname": {
+                                            "type": "string",
+                                            "example": "John Dao"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": 'john.dao@pagex.io'
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+
+                    }
                 ],
                 "responses": {
                     '200': {
-                        "description": "Vous êtes inscrit avec succès, veuillez valider votre adresse email",                     
+                        "description": "Vous êtes inscrit avec succès, veuillez valider votre adresse email",
                         // content: {
                         //     'application/json': {
                         //         "schema": {
