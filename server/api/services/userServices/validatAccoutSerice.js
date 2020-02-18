@@ -13,10 +13,10 @@ async function validateEmailAccount(data, res) {
 
         if (users > 0) {
             // Return error message
-            res.status(200).json({
-                success: false,
+            res.status(302).json({
+                success: true,
                 msg: "Account exists",
-                code: 404
+                code: 302
             })
         } else {
             let response = {};
@@ -42,11 +42,7 @@ async function validateEmailAccount(data, res) {
                     }
                 })
             } else {
-                res.status(200).json({
-                    success: false,
-                    msg: "An error occured",
-                    code: 500
-                })
+                res.status(500)
             }
         }
     }

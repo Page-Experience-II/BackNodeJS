@@ -85,15 +85,74 @@ const swaggerDocument = {
                     }
                 ],
                 "responses": {
+                    '302': {
+                        "description": "This user email already exists",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "booleon",
+                                            "example": true
+                                        },
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "Account exists"
+                                        },
+                                        "code": {
+                                            "type": "number",
+                                            "example": 302
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    },
                     '200': {
-                        "description": "Vous êtes inscrit avec succès, veuillez valider votre adresse email",
-                        // content: {
-                        //     'application/json': {
-                        //         "schema": {
-                        //             $ref: '#/components/schemas/Users'
-                        //         }
-                        //     }
-                        // }
+                        "description": "Validation code for user account has been generated succesfully",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "booleon",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "number",
+                                            "example": 200
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "_3456785445675"
+                                                },
+                                                "validationCode": {
+                                                    "type": "string",
+                                                    "example": '98789'
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        },
+                    },
+                    '500': {
+                        "description": "An error has occured",
                     },
                 }
             }
