@@ -1,28 +1,38 @@
 const userDao = require('../../daos/userDao/userDao');
 const utils = require('../../utils/utils');
+const userEmailsTemplate = require('../../emails/userEmails/accountCodeValidationEmail');
+const emailSender = require('../../utils/emailSender');
 
-async function validateEmailAccount (data, res) {
+async function validateEmailAccount(data, res) {
     // vlidation email and fullname
     // TODO ADD MORE VALIDATIONS
-    console.log("Generate code and Send it", data);
     if (data.email != "" && data.fullname != "") {
         // Check if email exists
-        if (await userDao.ifExistEmailValidated(data.email) > 0 || await userDao.ifExistUserAccount(data.email) > 0) {
-        // Return error message
-            console.log("Account exist or need to be validated!");
+        let users = await userDao.ifExistUserAccount(data.email);
+        let valideAccount = await userDao.ifExistEmailValidated(data.email);
+
+        if (users > 0) {
+            // Return error message
             res.status(200).json({
-                success: true,
+                success: false,
                 msg: "Account exists",
-                code: 111
+                code: 404
             })
         } else {
-            // create account validation
-            console.log("Generate code and Send it", data);
-            let code = utils.generateRandomNum(6);
-            let response = await userDao.createAccountValidation(data, code);
-            // send email
-            console.log("Res :", response);
+            let response = {};
+            let code = "";
+            if (valideAccount > 0) {
+                response = await userDao.getAccountValidation(data.email);
+                code = response.validationCode;
+            } else {
+                // create account validation
+                code = utils.generateRandomNum(6);
+                response = await userDao.createAccountValidation(data.email);
+            }
             if (response !== false) {
+                // Send Email with code
+                let msg = userEmailsTemplate.accountCodeValidation(code);
+                emailSender.sendEmail("PAGEX TEAM", data.email, "Validation code", msg);
                 res.status(200).json({
                     succes: true,
                     code: 200,
@@ -31,12 +41,13 @@ async function validateEmailAccount (data, res) {
                         validationCode: response.validationCode,
                     }
                 })
+            } else {
+                res.status(200).json({
+                    success: false,
+                    msg: "An error occured",
+                    code: 500
+                })
             }
-            res.status(200).json({
-                success: true,
-                msg: "An error occured",
-                code: 500
-            })
         }
     }
 

@@ -6,7 +6,7 @@ createNewAccount = (req, res, next) => {
 
 validateAccount = (req, res, next) => {
     console.log("here test")
-    userService.validateEmailAccount.validateEmailAccount(req.body, res);
+    userService.validateEmailAccount.validateEmailAccount(req.body.data, res);
 }
 
 module.exports = {

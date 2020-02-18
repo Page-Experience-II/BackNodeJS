@@ -13,11 +13,11 @@ let accountSchema = mongoose.Schema({
     },
     validationCode: {
 		type: String,
-		default: ""
+		default: "000000"
     },
     active:{
 		type: Boolean,
-		require: false
+		default: false
 	},
 	dateOfCreation: {
 		type: Date,
