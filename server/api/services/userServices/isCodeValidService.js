@@ -8,17 +8,19 @@ async function isCodeValid (data, res) {
         res.status(200).json({
             success: true,
             data: {
-                valid: true
+                valid: true,
+                msg: "Accepted"
             },
             code: 200
         })
     } else {
-        res.status(200).json({
+        res.status(406).json({
             success: true,
             data: {
-                valid: false
+                valid: false,
+                msg: "Not acceptable"
             },
-            code: 200
+            code: 406
         })
     }
 

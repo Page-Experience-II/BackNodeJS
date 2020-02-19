@@ -15,14 +15,14 @@ const swaggerDocument = {
     "produces": ["application/json"],
     "consumes": "application/json",
     "paths": {
-        "/api/v1/validate/account": {
+        "/api/v1/users/validate/account": {
             "post": {
                 "x-swagger-router-controller": "users",
                 "operationId": "users",
                 "summary": "Validate the email account",
                 "description": 'Validate user emil',
                 "tags": ["User"],
-                "description": `[Account validation link](${process.env.URL_BACKEND + ':' + process.env.URL_BACKEND_PORT + "/api/v1/validation"})`,
+                "description": `[Account validation link](${process.env.URL_BACKEND + ':' + process.env.URL_BACKEND_PORT + "/api/v1/users/validate/account"})`,
                 "parameters": [
                     // {
                     //     "name": "fullname",
@@ -142,6 +142,122 @@ const swaggerDocument = {
                                                 "validationCode": {
                                                     "type": "string",
                                                     "example": '98789'
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        },
+                    },
+                    '500': {
+                        "description": "An error has occured",
+                    },
+                }
+            }
+        },
+        "/api/v1/users/validate/code": {
+            "post": {
+                "x-swagger-router-controller": "users",
+                "operationId": "users",
+                "summary": "Check if email code is valid",
+                "description": 'Check account validation code',
+                "tags": ["User"],
+                "description": `[Code validation link](${process.env.URL_BACKEND + ':' + process.env.URL_BACKEND_PORT + "/api/v1/users/validate/code"})`,
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "5e4c58b2a7032302a4cc07cebd"
+                                        },
+                                        "validationCode": {
+                                            "type": "string",
+                                            "example": '26021'
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                ],
+                "responses": {
+                    '406': {
+                        "description": "Validation code is incorrect",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "booleon",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "number",
+                                            "example": 406
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "valid": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "msg": {
+                                                    "type": "string",
+                                                    "example": 'Not acceptable'
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    '200': {
+                        "description": "Validation code is correct",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "booleon",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "number",
+                                            "example": 200
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "valid": {
+                                                    "type": "boolean",
+                                                    "example": true
+                                                },
+                                                "msg": {
+                                                    "type": "string",
+                                                    "example": 'Accepted'
                                                 }
                                             }
                                         }
