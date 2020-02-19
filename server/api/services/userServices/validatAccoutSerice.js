@@ -11,6 +11,8 @@ async function validateEmailAccount(data, res) {
         let users = await userDao.ifExistUserAccount(data.email);
         let valideAccount = await userDao.ifExistEmailValidated(data.email);
 
+        let accountActive = await userDao.ifEmailValidated(data.email);
+
         if (users > 0) {
             // Return error message
             res.status(302).json({
@@ -18,6 +20,13 @@ async function validateEmailAccount(data, res) {
                 msg: "Account exists",
                 code: 302
             })
+        } else if (accountActive > 0) {
+            res.status(302).json({
+                success: true,
+                msg: "Account already validated",
+                code: 302
+            })
+
         } else {
             let response = {};
             let code = "";
@@ -27,7 +36,7 @@ async function validateEmailAccount(data, res) {
             } else {
                 // create account validation
                 code = utils.generateRandomNum(6);
-                response = await userDao.createAccountValidation(data.email);
+                response = await userDao.createAccountValidation(data, code);
             }
             if (response !== false) {
                 // Send Email with code
