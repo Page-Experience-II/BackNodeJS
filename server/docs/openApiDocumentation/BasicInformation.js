@@ -273,18 +273,183 @@ const swaggerDocument = {
                 }
             }
         },
-        "/content/:id": {
-            "get": {
-                "x-swagger-router-controller": "bar",
-                "operationId": "impossible",
-                "tags": ["Content"],
-                "description": "",
-                "parameters": [],
+        "/api/v1/users/signup": {
+            "post": {
+                "x-swagger-router-controller": "users",
+                "operationId": "users",
+                "summary": "Signup a new user",
+                "description": 'Create a new user account',
+                "tags": ["User"],
+                "description": `[User creation link](${process.env.URL_BACKEND + ':' + process.env.URL_BACKEND_PORT + "/api/v1/users/signup"})`,
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "5e4c58b2a7032302a4cc07cebd"
+                                        },
+                                        "validationCode": {
+                                            "type": "string",
+                                            "example": '26021'
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": 'pagex@gmail.com'
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "example": '9876543456789'
+                                        },
+                                        "file": {
+                                            "type": "file",
+                                            "example": '/photo/test.png'
+                                        },
+                                        "passion": {
+                                            "type": "string",
+                                            "example": 'painting'
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                ],
                 "responses": {
-                    "test": "hello"
+                    '406': {
+                        "description": "Account validation",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "booleon",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "number",
+                                            "example": 406
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "valid": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "msg": {
+                                                    "type": "string",
+                                                    "example": 'This account is not active or exists'
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    '407': {
+                        "description": "Password validation",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "booleon",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "number",
+                                            "example": 407
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "valid": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "msg": {
+                                                    "type": "string",
+                                                    "example": 'Password must include more than 08 characters'
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    '200': {
+                        "description": "Account creation",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "booleon",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "number",
+                                            "example": 200
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "msg": {
+                                                    "type": "string",
+                                                    "example": 'Account created with success'
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        },
+                    },
+                    '500': {
+                        "description": "An error has occured",
+                    },
                 }
             }
-        }
+        },
+        // "/content/:id": {
+        //     "get": {
+        //         "x-swagger-router-controller": "bar",
+        //         "operationId": "impossible",
+        //         "tags": ["Content"],
+        //         "description": "",
+        //         "parameters": [],
+        //         "responses": {
+        //             "test": "hello"
+        //         }
+        //     }
+        // }
     }
 };
 

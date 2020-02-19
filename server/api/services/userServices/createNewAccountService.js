@@ -30,13 +30,13 @@ async function addNewUser(req, data, res) {
             })
         }
     } else {
-        res.status(406).json({
+        res.status(407).json({
             success: true,
             data: {
                 valid: false,
                 msg: "Password must include more than 08 characters"
             },
-            code: 406
+            code: 407
         })
     }
 }
