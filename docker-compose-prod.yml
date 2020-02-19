@@ -9,7 +9,7 @@ services:
     volumes : 
       - ./backend/:/usr/src/app:rw
     ports:
-      - "3030:3000"
+      - "80:3000"
     links:
       - mongo
   
@@ -20,13 +20,3 @@ services:
       - ./data:/data/db
     ports:
       - "27017:27017"
-
-  frontend_dev:
-    image: node:latest
-    container_name: ${PROJET_NAME}_frontend_dev
-    volumes:
-      - ./frontend/:/home/node/app
-    working_dir: /home/node/app
-    command: npm run start-deploy
-    ports:
-        - "80:5000"
