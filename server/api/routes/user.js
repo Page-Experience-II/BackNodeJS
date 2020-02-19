@@ -14,6 +14,12 @@ router.post('/signup', multer.upload.any(), userController.createNewAccount)
 // @access  Public
 router.post('/validate/account', userController.validateAccount)
 
+// @desc    Check if email validation code is valid
+// @route   POST /api/v1/users/validate/code
+// @access  Public
+router.post('/validate/code', userController.isCodeValid)
+
+
 router.get('/validate/account', (req, res, next) => {
     res.send("test get API")
 })

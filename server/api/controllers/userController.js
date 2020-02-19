@@ -5,11 +5,15 @@ createNewAccount = (req, res, next) => {
 }
 
 validateAccount = (req, res, next) => {
-    console.log("here test")
     userService.validateEmailAccount.validateEmailAccount(req.body.data, res);
+}
+
+isCodeValid = (req, res, next) => {
+    userService.isCodeValidService.isCodeValid(req.body.data, res);
 }
 
 module.exports = {
     createNewAccount,
-    validateAccount
+    validateAccount,
+    isCodeValid
 }
