@@ -19,5 +19,6 @@ loginUser = (req, res, next) => {
 module.exports = {
     createNewAccount,
     validateAccount,
-    isCodeValid
+    isCodeValid,
+    loginUser,
 }

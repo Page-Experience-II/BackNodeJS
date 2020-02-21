@@ -19,6 +19,10 @@ router.post('/validate/account', userController.validateAccount)
 // @access  Public
 router.post('/validate/code', userController.isCodeValid)
 
+// @desc    Login user
+// @route   POST /api/v1/users/login
+// @access  Public
+router.post('/login', userController.loginUser)
 
 router.get('/validate/account', (req, res, next) => {
     res.send("test get API")
