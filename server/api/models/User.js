@@ -16,6 +16,7 @@ let userSchema = mongoose.Schema({
         require: true,
     },
     email: String,
+    password: String,
     passion: {
         type: String,
         default: "",

@@ -1,9 +1,7 @@
 const userService = require('../services/userServices/index');
 
 createNewAccount = (req, res, next) => {
-    console.log("Create account");
     userService.createNewAccountService.addNewUser(req, req.body.data, res);
-
 }
 
 validateAccount = (req, res, next) => {
@@ -12,6 +10,10 @@ validateAccount = (req, res, next) => {
 
 isCodeValid = (req, res, next) => {
     userService.isCodeValidService.isCodeValid(req.body.data, res);
+}
+
+loginUser = (req, res, next) => {
+    userService.userLoginService.userLogin(req.body.data, res);
 }
 
 module.exports = {

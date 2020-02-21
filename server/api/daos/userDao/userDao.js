@@ -126,8 +126,8 @@ async function createAccountValidation(data, code) {
 saveNewUserAccount = (data, photo) => {
     return new Promise(async (resolve, reject) => {
         let user = new User(await UserClass.CreateNewUser(data, photo));
-        console.log("User class :", user)
         user.save().then(res => {
+            console.log("User saved :", res)
             resolve(true);
         }).catch(err => {
             console.log("saveNewUserAccount ERR :", err);
