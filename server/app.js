@@ -56,6 +56,7 @@ app.use((req, res, next) => {
 // Routes
 var indexRouter = require('./api/routes/index');
 var userRouter = require('./api/routes/user');
+var contentRouter = require("./api/routes/content");
 
 // Open connection to the database
 db.once('open', function() {
@@ -81,8 +82,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Call routes API
 app.use('/index', indexRouter);
 app.use('/api/v1/users', userRouter);
-
-
+app.use('/api/v1/content', contentRouter);
 
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //Use hamlet 
