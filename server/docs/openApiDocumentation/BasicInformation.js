@@ -721,18 +721,98 @@ const swaggerDocument = {
                 }
             }
         },
-        // "/content/:id": {
-        //     "get": {
-        //         "x-swagger-router-controller": "bar",
-        //         "operationId": "impossible",
-        //         "tags": ["Content"],
-        //         "description": "",
-        //         "parameters": [],
-        //         "responses": {
-        //             "test": "hello"
-        //         }
-        //     }
-        // }
+        "/api/v1/content/all/limit/:limit/page/:page": {
+            "get": {
+                "x-swagger-router-controller": "contents",
+                "operationId": "contents",
+                "summary": "Get contents",
+                "description": 'Get all content by pagination',
+                "tags": ["Content"],
+                "description": `[Content fetch link](${process.env.URL_BACKEND + ':' + process.env.URL_BACKEND_PORT + "/api/v1/content/all/limit/:limit/page/:page"})`,
+                "parameters": [
+
+                ],
+                "responses": {
+                    '200': {
+                        "description": "Content fetched successfully",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "booleon",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "number",
+                                            "example": 200
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "per_page": {
+                                                    "type": "number",
+                                                    "example": 10
+                                                },
+                                                "total": {
+                                                    "type": "number",
+                                                    "example": 42
+                                                },
+                                                "total_pages": {
+                                                    "type": "number",
+                                                    "example": 4
+                                                },
+                                                "data": {
+                                                    "properties": {
+                                                        "contentDeleted": {
+                                                            "type": "booleon",
+                                                            "example": false
+                                                        },
+                                                        "_id": {
+                                                            "type": "string",
+                                                            "example": "5e51489c01a9f50461ae7bf4"
+                                                        },
+                                                        "contentUserId": {
+                                                            "type": "string",
+                                                            "example": '5e51354eb2f340002b4cb87a'
+                                                        },
+                                                        "contentTitle": {
+                                                            "type": "string",
+                                                            "example": 'Awesome paintings'
+                                                        },
+                                                        "contentDescription": {
+                                                            "type": "string",
+                                                            "example": 'this is my cool art'
+                                                        },
+                                                        "file": {
+                                                            "type": "string",
+                                                            "example": 'I am an image'
+                                                        },
+                                                        "contentType": {
+                                                            "type": "string",
+                                                            "example": 'passion'
+                                                        },
+                                                    }
+                                                }
+
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        },
+                    },
+                    '500': {
+                        "description": "An error has occured",
+                    },
+                }
+            }
+        },
     }
 };
 
