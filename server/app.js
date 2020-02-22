@@ -11,7 +11,7 @@ const helmet = require('helmet');
 let mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./docs/openApiDocumentation/BasicInformation');
-
+const generateData = require('./api/generateData/index');
 
 // Main app
 var app = express();
@@ -85,6 +85,9 @@ app.use('/index', indexRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/content', contentRouter);
 app.use('/api/v1/passion', passionRouter);
+
+// Generate data
+generateData.generateData();
 
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //Use hamlet 

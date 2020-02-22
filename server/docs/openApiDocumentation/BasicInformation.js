@@ -813,6 +813,98 @@ const swaggerDocument = {
                 }
             }
         },
+        "/api/v1/passion/all/limit/:limit/page/:page": {
+            "get": {
+                "x-swagger-router-controller": "passons",
+                "operationId": "passions",
+                "summary": "Get passions",
+                "description": 'Get all passions by pagination',
+                "tags": ["Passion"],
+                "description": `[Passion fetch link](${process.env.URL_BACKEND + ':' + process.env.URL_BACKEND_PORT + "/api/v1/passion/all/limit/:limit/page/:page"})`,
+                "parameters": [
+
+                ],
+                "responses": {
+                    '200': {
+                        "description": "Passion fetched successfully",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "booleon",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "number",
+                                            "example": 200
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "per_page": {
+                                                    "type": "number",
+                                                    "example": 10
+                                                },
+                                                "total": {
+                                                    "type": "number",
+                                                    "example": 42
+                                                },
+                                                "total_pages": {
+                                                    "type": "number",
+                                                    "example": 4
+                                                },
+                                                "data": {
+                                                    "properties": {
+                                                        "_id": {
+                                                            "type": "string",
+                                                            "example": "5e51489c01a9f50461ae7bf4"
+                                                        },
+                                                        "passionImage": {
+                                                            "type": "string",
+                                                            "example": '5e51354eb2f340002b4cb87a'
+                                                        },
+                                                        "passionTitle": {
+                                                            "type": "string",
+                                                            "example": 'Painting'
+                                                        },
+                                                        "passionDescription": {
+                                                            "type": "strnig",
+                                                            "example": "My passion, my life"
+                                                        },
+                                                        "passionDeleted": {
+                                                            "type": "booleon",
+                                                            "example": false
+                                                        },
+                                                        "dateOfCreation": {
+                                                            "type": "string",
+                                                            "example": '2020-02-22T21:34:15.843Z'
+                                                        },
+                                                        "dateOfLastUpdate": {
+                                                            "type": "string",
+                                                            "example": '2020-02-22T21:34:15.843Z'
+                                                        },
+                                                    }
+                                                }
+
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        },
+                    },
+                    '500': {
+                        "description": "An error has occured",
+                    },
+                }
+            }
+        },
     }
 };
 
