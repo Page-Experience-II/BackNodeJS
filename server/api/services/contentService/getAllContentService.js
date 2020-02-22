@@ -1,4 +1,3 @@
-const utils = require("../../utils/utils");
 const ContentDao = require('../../daos/contentDao/contentDao');
 
 async function getAllContent (res, page, limit) {
