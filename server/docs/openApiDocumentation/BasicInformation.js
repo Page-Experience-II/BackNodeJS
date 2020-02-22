@@ -438,6 +438,168 @@ const swaggerDocument = {
                 }
             }
         },
+        "/api/v1/users/login": {
+            "post": {
+                "x-swagger-router-controller": "users",
+                "operationId": "users",
+                "summary": "Login user",
+                "description": 'Account connection',
+                "tags": ["User"],
+                "description": `[User creation link](${process.env.URL_BACKEND + ':' + process.env.URL_BACKEND_PORT + "/api/v1/users/login"})`,
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "email": {
+                                            "type": "string",
+                                            "example": 'pagex@gmail.com'
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "example": '9876543456789'
+                                        },
+
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                ],
+                "responses": {
+                    '406': {
+                        "description": "Account validation",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "booleon",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "number",
+                                            "example": 406
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "msg": {
+                                                    "type": "string",
+                                                    "example": 'Account does not exists'
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    '407': {
+                        "description": "Password validation",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "booleon",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "number",
+                                            "example": 407
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "msg": {
+                                                    "type": "string",
+                                                    "example": 'Password and/or email is not correct'
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    '200': {
+                        "description": "Account login successfully",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "booleon",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "number",
+                                            "example": 200
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "token": {
+                                                    "type": "string",
+                                                    "example": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IiQyYiQxMCRlMnRWeGc5dmszaHlFdjVOWGJ2U2t1YVVJOUJIakdHblAzTGZXZEFiRzBHOXBLVGJNUlA4aSIsImRhdGEiOiI1ZTUxMzU0ZWIyZjM0MDAwMmI0Y2I4N2EiLCJpYXQiOjE1ODIzODA3MDUsImV4cCI6MTU4MjQyMzkwNX0.aiesaYNjxKbZyZUhWmfZD48pVS0C_GhqITdKdTK2g80'
+                                                },
+                                                "userId": {
+                                                    "type": "string",
+                                                    "example": '5e51354eb2f340002b4cb87a'
+                                                },
+                                                "imageUrl": {
+                                                    "type": "string",
+                                                    "example": '/upload/exemple/profiletest.png'
+                                                },
+                                                "fullname": {
+                                                    "type": "string",
+                                                    "example": 'John Dao'
+                                                },
+                                                "passion": {
+                                                    "type": "string",
+                                                    "example": 'Painting'
+                                                },
+                                                "dateOfCreation": {
+                                                    "type": "string",
+                                                    "example": '2020-02-22T14:06:06.704Z'
+                                                }
+
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        },
+                    },
+                    '500': {
+                        "description": "An error has occured",
+                    },
+                }
+            }
+        },
         // "/content/:id": {
         //     "get": {
         //         "x-swagger-router-controller": "bar",

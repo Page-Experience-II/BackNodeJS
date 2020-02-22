@@ -23,7 +23,7 @@ async function userLogin(userInfo, res) {
                 const token = await accessTokenDao.generateToken(userData[0].email, userData[0]._id);
                 const accessTokenValue = await accessTokenDao.saveTokenAndGetAccessToken(token, userData[0]._id);
                 const basedAccesstoken = await accessTokenDao.generateToken(accessTokenValue, userData[0]._id);
-
+                console.log("userData :", userData);
                 res.status(200).json({
                     success: true,
                     code: 200,
@@ -32,6 +32,7 @@ async function userLogin(userInfo, res) {
                         userId: userData[0]._id,
                         imageUrl: userData[0].profilePhoto,
                         fullname: userData[0].fullname,
+                        passion: userData[0].passion,
                         dateOfCreation: userData[0].dateOfCreation
                     }
                 })
