@@ -600,6 +600,127 @@ const swaggerDocument = {
                 }
             }
         },
+        "/api/v1/content/new": {
+            "post": {
+                "x-swagger-router-controller": "contents",
+                "operationId": "contents",
+                "summary": "Add content",
+                "description": 'Create new content',
+                "tags": ["Content"],
+                "description": `[Content creation link](${process.env.URL_BACKEND + ':' + process.env.URL_BACKEND_PORT + "/api/v1/content/new"})`,
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "contentUserId": {
+                                            "type": "string",
+                                            "example": '5e51354eb2f340002b4cb87a'
+                                        },
+                                        "contentTitle": {
+                                            "type": "string",
+                                            "example": 'Awesome paintings'
+                                        },
+                                        "contentDescription": {
+                                            "type": "string",
+                                            "example": 'this is my cool art'
+                                        },
+                                        "file": {
+                                            "type": "string",
+                                            "example": 'I am an image'
+                                        },
+                                        "contentType": {
+                                            "type": "string",
+                                            "example": 'passion'
+                                        },
+
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                ],
+                "responses": {
+                    '406': {
+                        "description": "Account validation",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "booleon",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "number",
+                                            "example": 406
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "msg": {
+                                                    "type": "string",
+                                                    "example": 'Account does not exists'
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    '200': {
+                        "description": "Content created successfully",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "booleon",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "number",
+                                            "example": 200
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "msg": {
+                                                    "type": "string",
+                                                    "example": 'Content created with success'
+                                                }
+
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        },
+                    },
+                    '500': {
+                        "description": "An error has occured",
+                    },
+                }
+            }
+        },
         // "/content/:id": {
         //     "get": {
         //         "x-swagger-router-controller": "bar",

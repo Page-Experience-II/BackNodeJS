@@ -15,8 +15,8 @@ async function createNewContent (req, data, res) {
                 success: true,
                 data: {
                     msg: "Content created with success",
-                    code: 200
                 },
+                code: 200
             })
         }).catch(err => utils.defaultError(res, err))
     } else {
