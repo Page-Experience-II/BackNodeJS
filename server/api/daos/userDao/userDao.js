@@ -27,10 +27,6 @@ ifEmailValidated = (email) => {
     })
 }
 
-ifExistUserData = (data) => {
-
-}
-
 ifExistEmailValidatedByCodeFullname = (data) => {
     return new Promise((resolve, reject) => {
         EmailValiation.find({
@@ -68,6 +64,17 @@ ifExistUserAccount = (email) => {
             .then(response => {
                 resolve(response.length);
             }).catch(err => console.log("existEmailToBeValidated ERR :", err));
+    })
+}
+
+ifExistUserAccountById = (id) => {
+    return new Promise((resolve, reject) => {
+        User.find({
+            _id: id
+        }).exec()
+            .then(response => {
+                resolve(response.length);
+            }).catch(err => console.log("ifExistUserAccountById ERR :", err));
     })
 }
 
@@ -144,6 +151,7 @@ module.exports = {
     ifExistEmailValidatedByCodeFullname,
     ifExistUserAccount,
     ifEmailValidated,
+    ifExistUserAccountById,
     isAccountValidated,
     saveNewUserAccount
 }
