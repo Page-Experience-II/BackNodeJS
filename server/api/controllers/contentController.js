@@ -1,7 +1,7 @@
 const contentService = require('../services/contentService/index');
 
 createNewContent = (req, res, next) => {
-    contentService.createNewContentService.createNewContent(req, req.body.data, res)
+    contentService.createNewContentService.createNewContent(req, req.body, res)
 }
 
 getAllContents = (req, res, next) => {

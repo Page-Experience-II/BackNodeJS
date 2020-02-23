@@ -616,32 +616,28 @@ const swaggerDocument = {
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "data": {
-                                    "type": "object",
-                                    "properties": {
-                                        "contentUserId": {
-                                            "type": "string",
-                                            "example": '5e51354eb2f340002b4cb87a'
-                                        },
-                                        "contentTitle": {
-                                            "type": "string",
-                                            "example": 'Awesome paintings'
-                                        },
-                                        "contentDescription": {
-                                            "type": "string",
-                                            "example": 'this is my cool art'
-                                        },
-                                        "file": {
-                                            "type": "string",
-                                            "example": 'I am an image'
-                                        },
-                                        "contentType": {
-                                            "type": "string",
-                                            "example": 'passion'
-                                        },
+                                "contentUserId": {
+                                    "type": "string",
+                                    "example": '5e51354eb2f340002b4cb87a'
+                                },
+                                "contentTitle": {
+                                    "type": "string",
+                                    "example": 'Awesome paintings'
+                                },
+                                "contentDescription": {
+                                    "type": "string",
+                                    "example": 'this is my cool art'
+                                },
+                                "file": {
+                                    "type": "string",
+                                    "example": 'I am an image'
+                                },
+                                "contentType": {
+                                    "type": "string",
+                                    "example": 'passion'
+                                },
 
-                                    }
-                                }
+
                             }
                         }
 
