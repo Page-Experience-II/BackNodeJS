@@ -15,21 +15,21 @@ async function isCodeValid(data, res) {
                 code: 200
             })
         } else {
-            res.status(406).json({
+            res.status(200).json({
                 success: true,
                 data: {
                     valid: false,
-                    msg: "Not acceptable"
+                    msg: "Code is not valid or already validated"
                 },
                 code: 406
             })
         }
     } else {
-        res.status(406).json({
+        res.status(200).json({
             success: true,
             data: {
                 valid: false,
-                msg: "Not acceptable"
+                msg: "Code is not valid or already validated"
             },
             code: 406
         })

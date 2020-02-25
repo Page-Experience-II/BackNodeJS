@@ -49,7 +49,6 @@ isAccountValidated = (data) => {
             active: true
         }).exec()
             .then(response => {
-                console.log("response. :", response);
                 resolve(response.length === 0 ? false : true);
             }).catch(err => console.log("ifExistEmailValidatedByCodeFullname ERR :", err));
     })
@@ -134,7 +133,6 @@ saveNewUserAccount = (data, photo) => {
     return new Promise(async (resolve, reject) => {
         let user = new User(await UserClass.CreateNewUser(data, photo));
         user.save().then(res => {
-            console.log("User saved :", res)
             resolve(true);
         }).catch(err => {
             console.log("saveNewUserAccount ERR :", err);

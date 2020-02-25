@@ -20,7 +20,7 @@ async function addNewUser(req, data, res) {
                 res.status(500);
             }
         } else {
-            res.status(406).json({
+            res.status(200).json({
                 success: true,
                 data: {
                     valid: false,
@@ -30,7 +30,7 @@ async function addNewUser(req, data, res) {
             })
         }
     } else {
-        res.status(407).json({
+        res.status(200).json({
             success: true,
             data: {
                 valid: false,

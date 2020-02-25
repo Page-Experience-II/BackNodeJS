@@ -15,13 +15,13 @@ async function validateEmailAccount(data, res) {
 
         if (users > 0) {
             // Return error message
-            res.status(302).json({
+            res.status(200).json({
                 success: true,
                 msg: "Account exists",
                 code: 302
             })
         } else if (accountActive > 0) {
-            res.status(302).json({
+            res.status(200).json({
                 success: true,
                 msg: "Account already validated",
                 code: 302

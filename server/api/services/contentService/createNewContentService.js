@@ -11,7 +11,6 @@ async function createNewContent (req, data, res) {
         let contentData = await Content(await ContentClass.createNewContent(data, photo))
         contentData.save()
         .then(response => {
-            console.log("response :", response);
             res.status(200).json({
                 success: true,
                 data: {

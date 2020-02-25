@@ -289,35 +289,29 @@ const swaggerDocument = {
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "data": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string",
-                                            "example": "5e4c58b2a7032302a4cc07cebd"
-                                        },
-                                        "validationCode": {
-                                            "type": "string",
-                                            "example": '26021'
-                                        },
-                                        "email": {
-                                            "type": "string",
-                                            "example": 'pagex@gmail.com'
-                                        },
-                                        "password": {
-                                            "type": "string",
-                                            "example": '9876543456789'
-                                        },
-                                        "file": {
-                                            "type": "file",
-                                            "example": '/photo/test.png'
-                                        },
-                                        "passion": {
-                                            "type": "string",
-                                            "example": 'painting'
-                                        }
-
-                                    }
+                                "id": {
+                                    "type": "string",
+                                    "example": "5e4c58b2a7032302a4cc07cebd"
+                                },
+                                "validationCode": {
+                                    "type": "string",
+                                    "example": '26021'
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "example": 'pagex@gmail.com'
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "example": '9876543456789'
+                                },
+                                "file": {
+                                    "type": "file",
+                                    "example": '/photo/test.png'
+                                },
+                                "passion": {
+                                    "type": "string",
+                                    "example": 'painting'
                                 }
                             }
                         }

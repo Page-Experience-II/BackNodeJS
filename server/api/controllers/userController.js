@@ -1,7 +1,7 @@
 const userService = require('../services/userServices/index');
 
 createNewAccount = (req, res, next) => {
-    userService.createNewAccountService.addNewUser(req, req.body.data, res);
+    userService.createNewAccountService.addNewUser(req, req.body, res);
 }
 
 validateAccount = (req, res, next) => {
