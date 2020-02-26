@@ -1,7 +1,6 @@
 const userDao = require('../../daos/userDao/userDao');
 
 async function addNewUser(req, data, res) {
-    console.log("data :", data);
     //check password length
     if (data.password && data.password.length > 8) {
         // check if email and validation code exist
