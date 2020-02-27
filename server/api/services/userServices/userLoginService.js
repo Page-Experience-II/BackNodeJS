@@ -12,7 +12,7 @@ async function userLogin(userInfo, res) {
         .exec()
         .then(async userData => {
             if (userData.length === 0) {
-                res.status(406).json({
+                res.status(200).json({
                     success: true,
                     code: 406,
                     data: {
@@ -37,9 +37,9 @@ async function userLogin(userInfo, res) {
                     }
                 })
             } else {
-                res.status(407).json({
+                res.status(200).json({
                     success: true,
-                    code: 406,
+                    code: 407,
                     data: {
                         msg: "Password and/or email is not correct"
                     }
