@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken');
-const accessTokenDao = require('../classes/accessTokenClass');
+const accessTokenDao = require('../class/accessTokenClass');
 
 module.exports = async (req, res, next) => {
     try {
         const accessToken = new accessTokenDao();
 	    if (req.headers.authorization == "") {
             res.status(401).json({
-                message: "Auth failed !"
+                message: "Not authorized attempt access, this incedent will be reported!"
             })
         } else {
 		const token = req.headers.authorization.split(" ")[1];
@@ -18,7 +18,7 @@ module.exports = async (req, res, next) => {
         }
     } catch (error) {
 	    res.status(401).json({
-            message: "Auth failed middleware"
+            message: "Not authorized attempt access, this incedent will be reported"
         })
     }
 }
