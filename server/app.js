@@ -11,14 +11,11 @@ const helmet = require('helmet');
 let mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./docs/openApiDocumentation/BasicInformation');
-
+const generateData = require('./api/generateData/index');
 
 // Main app
 var app = express();
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-//Use hamlet 
-app.use(helmet())
 
 // Logs
 app.use(logger('dev'));
@@ -58,6 +55,9 @@ app.use((req, res, next) => {
 
 // Routes
 var indexRouter = require('./api/routes/index');
+var userRouter = require('./api/routes/user');
+var contentRouter = require("./api/routes/content");
+var passionRouter = require("./api/routes/passion");
 
 // Open connection to the database
 db.once('open', function() {
@@ -82,6 +82,16 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Call routes API
 app.use('/index', indexRouter);
+app.use('/api/v1/users', userRouter);
+app.use('/api/v1/content', contentRouter);
+app.use('/api/v1/passion', passionRouter);
+
+// Generate data
+generateData.generateData();
+
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+//Use hamlet 
+app.use(helmet())
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -92,7 +102,7 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = req.app.get('env') === 'dev' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
